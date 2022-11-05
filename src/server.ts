@@ -1,6 +1,8 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
  
+import jwt from '@fastify/jwt'
+
 import { poolRoutes } from "./routes/pool";
 import { authRoutes } from "./routes/auth";
 import { gameRoutes } from "./routes/game";
@@ -19,6 +21,10 @@ async function bootstrap() {
     origin: true
   })
 
+
+  await fastify.register(jwt ,{
+    secret: process.env.SECRET_KEY || '',
+  })
 
   await fastify.register(authRoutes)
   await fastify.register(gameRoutes)
