@@ -159,7 +159,6 @@ export async function poolRoutes(fastify: FastifyInstance) {
     })
 
 
-
   fastify.get('/pools/:id', {
     onRequest: [authenticate]
   }, async (request) => {
